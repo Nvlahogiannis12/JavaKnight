@@ -1,0 +1,16 @@
+body{
+    background-image:url(imgs/opening-screen-BG.jpg) ;
+    background-position:center center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+}
+.gameTitle{
+    background-color: darkslategrey;
+    color:white;
+    border: solid;
+    border-color: rgb(77, 116, 116);
+}
+.gameName{
+    font-size: 100px;
+}
