@@ -1,16 +1,30 @@
 body{
-    background-image:url(imgs/opening-screen-BG.jpg) ;
+    background-image:url(imgs/opening-screen-BG.jpg);
     background-position:center center;
     background-size:cover;
     background-repeat:no-repeat;
     background-attachment:fixed;
+    color:white;
 }
 .gameTitle{
-    background-color: darkslategrey;
+    background-image:url(imgs/Sword.Removedbg.png);
     color:white;
-    border: solid;
-    border-color: rgb(77, 116, 116);
+    background-size: contain;
+   /* border: solid;
+    border-color: rgb(77, 116, 116); */
 }
 .gameName{
-    font-size: 100px;
+    font-size: 80px;
+}
+.startMenuBG{
+    background-color: rgb(77, 116, 116);
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: 300px;
+}
+@media screen and (max-width: 500px){
+    .gameName{
+        font-size: 1px ;
+    }
 }
