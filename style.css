@@ -25,6 +25,63 @@ body{
 }
 @media screen and (max-width: 500px){
     .gameName{
-        font-size: 1px ;
+        font-size: 1px;
     }
+}
+#gameSelectDungeon{
+    background-color: rgb(60, 90, 90);
+    position: absolute;
+    height: 450px;
+    aspect-ratio: 3/4;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.forest{
+    width: 50%;
+    height: auto;
+    background-color: green;
+    color:white;
+}
+.forest:hover{
+    width: 50%;
+    height: auto;
+    background-image:url(imgs/ForestBG.jpg);
+    background-position:center center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    color:black;
+}
+.seas{
+    width: 50%;
+    height: auto;
+    background-color: slateblue;
+    color:white;
+}
+.seas:hover{
+    width: 50%;
+    height: auto;
+    background-image:url(imgs/Shores.webp);
+    background-position:center center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    color:black;
+}
+
+.volcano{
+    width: 50%;
+    height: auto;
+    background-color: darkred;
+    color:white;
+}
+.volcano:hover{
+    width: 50%;
+    height: auto;
+    background-image:url(imgs/Volcanic-Wastelands.png);
+    background-position:center center;
+    background-size:cover;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
 }

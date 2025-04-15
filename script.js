@@ -2,11 +2,11 @@ let playerMenuOptions = ["Start", "Options",];
 let index = 0;
 let firstOptions = true
 let secondOptions = false
-isPlayerTurn()
+isMenu()
 updatePlayerActionOption()
 
-
-function playerKeyDowns(event){
+//Arrow Keys for selections if selections go over then they loop
+function playerKeyDownsMenuOne(event){
     if(firstOptions === false) return;
     if (event.key === "ArrowRight" || event.key === "ArrowDown") {
       index++
@@ -25,6 +25,7 @@ function playerKeyDowns(event){
   }
 }
 
+//creates the arrow > based on where the index is
   function updatePlayerActionOption(){
     for (let i = 0; i < playerMenuOptions.length; i++) {
       document.getElementsByClassName("selectionBox")[i].textContent =
@@ -33,20 +34,32 @@ function playerKeyDowns(event){
     document.getElementsByClassName("selectionBox")[index].textContent =
         "> " + document.getElementsByClassName("selectionBox")[index].textContent;
   }
-  
-  function isPlayerTurn(){
+
+  //turns on and off event listeners
+  function isMenu(){
     if (firstOptions === true){
-  window.addEventListener("keydown", playerKeyDowns);
+  window.addEventListener("keydown", playerKeyDownsMenuOne);
     } else{
-  window.removeEventListener("keydown", playerKeyDowns);
+  window.removeEventListener("keydown", playerKeyDownsMenuOne);
     }
   }
+
+  //button outputs for enter
   function playerMenuOptionSelected(){
     if (firstOptions === false) return;
     if (index === 0){
-        alert('yo')
+        selectDungeon()
     } else if (index === 1){
         alert('Wha?')
     }
         
+  }
+
+  //Start Menu Appears to Pick Dungeon
+  function selectDungeon(){
+    firstOptions = false
+    secondOptions = true
+    document.getElementById('startMenuBG').classList.add('d-none')
+    document.getElementById('gameSelectDungeon').classList.remove('d-none')
+    isMenu()
   }

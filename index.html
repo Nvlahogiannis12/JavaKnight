@@ -19,12 +19,22 @@
     </head>
     <body class="row container-fluid text-center justify-content-center">
         <main>
-            <div class="startMenuBG">
+            <div class="startMenuBG" id="startMenuBG">
+                <a onclick="selectDungeon()">
                     <h1 class="mt-4 selectionBox">Start</h1>
-                        <h1 class="selectionBox">Options</h1>
+                </a>
+                    
+                    <h1 class="selectionBox">Options</h1>
+                        
             </div>
-            <div class="gameTitle mt-4 container-fluid">
+            <div class="gameTitle mt-4 container-fluid" id="gameTitle">
                 <h1 class="gameName">Java Knight</h1>
+            </div>
+            <div id="gameSelectDungeon" class="d-none">
+                <h2 class="my-2">Pick a Dungeon:</h2>
+                <div class="my-4"><button class="btn difficulty-btn forest">Forest</button></div>
+                <div class="my-4"><button class="btn difficulty-btn seas">Seas</button></div>
+                <div class="my-4"><button class="btn difficulty-btn volcano">Volcano</button></div>
             </div>
         </main>
         <footer>
