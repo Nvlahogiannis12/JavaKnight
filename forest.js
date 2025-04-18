@@ -1,3 +1,7 @@
+//Variables
+let previousPlayerTurnMoves = [];
+let previousOpponentTurnMoves = [];
+
 
 //Gets random Number
 window.onload = genLoadingType();
