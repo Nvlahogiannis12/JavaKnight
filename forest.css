@@ -23,3 +23,63 @@ body{
     right: 0;
     background-color:tan;
 }
+#playerHealthBackground{
+    background-color:tan;
+}
+#opponentHealthBackground{
+    background-color:tan;
+}
+.playerHealthBar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 10px;
+    width:100%;
+    background-color: darkred;
+    z-index: 1;
+}
+.playerHealthBarLost{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 10px;
+    width: 100%;
+    background-color: rgb(25, 25, 25);
+    z-index: 0;
+}
+.playerHealthWrap{
+    position:relative;
+    width: 90%;
+    height: 20px;
+    margin: 0 auto;
+    margin-bottom:10px;
+}
+.opponentHealthBar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 10px;
+    width:100%;
+    background-color: darkred;
+    z-index: 1;
+}
+.opponentHealthBarLost{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-radius: 10px;
+    width: 100%;
+    background-color: rgb(25, 25, 25);
+    z-index: 0;
+}
+.opponentHealthWrap{
+    position:relative;
+    width: 90%;
+    height: 20px;
+    margin: 0 auto;
+    margin-bottom:10px;
+}
