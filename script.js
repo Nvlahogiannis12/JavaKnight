@@ -63,3 +63,9 @@ function playerKeyDownsMenuOne(event){
     document.getElementById('gameSelectDungeon').classList.remove('d-none')
     isMenu()
   }
+
+  function startGame(location, destinationPage){
+    localStorage.setItem("level", location)
+    window.location.href = destinationPage
+  }
+

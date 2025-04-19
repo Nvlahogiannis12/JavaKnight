@@ -25,8 +25,9 @@ function genLoadingType() {
   //after 4 seconds (4000 milliseconds) it calls this function to make it vanish
   setTimeout(loadScreenVanish, 4000,)
 }
-//switches background to location
+//what to do after time delay in genLoadingType
 function loadScreenVanish(){
-    document.body.style.backgroundImage = "url('imgs/ForestBG.jpg')";
+    document.body.style.backgroundImage = "url('imgs/ForestBG.jpg')"
     document.getElementById('loadingType').classList.add('d-none')
+    document.getElementById('playArea').classList.remove('d-none')
 }
