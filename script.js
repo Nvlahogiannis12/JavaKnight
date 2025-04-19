@@ -43,6 +43,11 @@ function playerKeyDownsMenuOne(event){
     } else{
   window.removeEventListener("keydown", playerKeyDownsMenuOne);
     }
+    if (isCurrentTurn === true){
+      window.addEventListener("keydown", playerKeyDownsAction);
+    } else{
+      window.removeEventListener("keydown", playerKeyDownsAction);
+    }
   }
 
   //button outputs for enter
@@ -72,6 +77,9 @@ function playerKeyDownsMenuOne(event){
   //GAME VARIABLES
   let previousPlayerTurnMoves = [];
   let previousOpponentTurnMoves = [];
+  let playerMoveAction = ['Attack', 'Shield', 'Surrender'];
+  let isCurrentTurn = false
+  let playerActionChoice = 0
 
   //when button is clicked this will get the location (variable) and save it across HTML Pages
   function startGame(location, destinationPage){
@@ -107,15 +115,58 @@ function genLoadingType() {
 function loadScreenVanish(){
   if(level === 'forest'){
     document.body.style.backgroundImage = "url('imgs/ForestBG.jpg')"
-    document.getElementById('loadingType').classList.add('d-none')
-    document.getElementById('playArea').classList.remove('d-none')
   } else if(level === 'seas'){
     document.body.style.backgroundImage = "url('imgs/Shores.webp')"
-    document.getElementById('loadingType').classList.add('d-none')
-    document.getElementById('playArea').classList.remove('d-none')
   } else if(level === 'volcano'){
     document.body.style.backgroundImage = "url('imgs/Volcanic-Wastelands.png')"
-    document.getElementById('loadingType').classList.add('d-none')
-    document.getElementById('playArea').classList.remove('d-none')
+  }
+  document.getElementById('loadingType').classList.add('d-none')
+  document.getElementById('playArea').classList.remove('d-none')
+
+  isCurrentTurn = true
+  updatePlayerMoveOption();
+  window.addEventListener("keydown", playerKeyDownsAction);
+}
+
+
+
+
+function playerKeyDownsAction(event){
+  if(isCurrentTurn === false) return;
+  if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+    playerActionChoice++
+    if (playerActionChoice > playerMoveAction.length - 1){
+      playerActionChoice = 0;
+      }
+      updatePlayerMoveOption();
+} else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+  playerActionChoice--
+  if (playerActionChoice < 0){
+    playerActionChoice = playerMoveAction.length - 1;
+}
+      updatePlayerMoveOption();
+} else if (event.key === 'Enter'){
+  playerActionOptionSelected();
+}
+}
+
+//creates the arrow > based on where the index is
+function updatePlayerMoveOption(){
+  for (let count = 0; count < playerMoveAction.length; count++) {
+    document.getElementsByClassName("actionChoice")[count].textContent =
+    playerMoveAction[count];
+  }
+  document.getElementsByClassName("actionChoice")[playerActionChoice].textContent =
+      "> " + document.getElementsByClassName("actionChoice")[playerActionChoice].textContent;
+}
+
+function playerActionOptionSelected(){
+  if (isCurrentTurn === false) return;
+  if (playerActionChoice === 0){
+      
+  } else if (playerActionChoice === 1){
+      
+  } else {
+    
   }
 }
