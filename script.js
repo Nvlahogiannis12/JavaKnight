@@ -124,13 +124,26 @@ function loadScreenVanish(){
   document.getElementById('loadingType').classList.add('d-none')
   document.getElementById('playArea').classList.remove('d-none')
 
+
+
+
+
+
+
+  ///FANCY ANIMATION STUFF HERE
+
+
+
+
+
+
+
+  numberCodeEnemy();
+
   isCurrentTurn = true
   updatePlayerMoveOption();
   window.addEventListener("keydown", playerKeyDownsAction);
 }
-
-
-
 
 function playerKeyDownsAction(event){
   if(isCurrentTurn === false) return;
@@ -172,8 +185,48 @@ function playerActionOptionSelected(){
   }
 }
 
-/*function numberCodeEnemy(){
+function numberCodeEnemy(){
+let enemyNumber;
+  if (roundCount === 1){
+     enemyNumber = 0
+  } else if (roundCount === 2 && level === 'forest'){
+    enemyNumber = numberGenOp(1 , 2)
+  } else if (roundCount === 2 && level === 'seas'){
+    enemyNumber = numberGenOp(3 , 4)
+  } else if (roundCount === 2 && level === 'volcano'){
+    enemyNumber = numberGenOp(5 , 6)
+  } else if (roundCount === 3 && level === 'forest'){
+    enemyNumber = 7
+  } else if (roundCount === 3 && level === 'seas'){
+    enemyNumber = 8
+  } else if (roundCount === 3 && level === 'volcano'){
+    enemyNumber = 9
+  }
 
+
+  if (enemyNumber === 0){
+alert('slime')
+  } else if (enemyNumber === 1){
+//Forest Mons 1
+  } else if (enemyNumber === 2){
+//Forest Mons 2
+  } else if (enemyNumber === 3){
+//Seas Mons 1
+  } else if (enemyNumber === 4){
+//Seas Mons 2
+  } else if (enemyNumber === 5){
+//Volcano Mons 1
+  } else if (enemyNumber === 6){
+//Volcano Mons 2
+  } else if (enemyNumber === 7){
+//Forest Boss
+  } else if (enemyNumber === 8){
+//Seas Boss
+  } else if (enemyNumber === 9){
+//Volcano Boss
+  }
 }
 
-function numberCodeKey */
+function numberGenOp(min, max){
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
