@@ -80,6 +80,7 @@ function playerKeyDownsMenuOne(event){
   let playerMoveAction = ['Attack', 'Shield', 'Surrender'];
   let isCurrentTurn = false
   let playerActionChoice = 0
+  let roundCount = 1
 
   //when button is clicked this will get the location (variable) and save it across HTML Pages
   function startGame(location, destinationPage){
@@ -163,10 +164,16 @@ function updatePlayerMoveOption(){
 function playerActionOptionSelected(){
   if (isCurrentTurn === false) return;
   if (playerActionChoice === 0){
-      
+
   } else if (playerActionChoice === 1){
-      
+
   } else {
-    
+
   }
 }
+
+/*function numberCodeEnemy(){
+
+}
+
+function numberCodeKey */

@@ -15,7 +15,7 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
             crossorigin="anonymous"
         />
-        <link rel="stylesheet" href="forest.css">
+        <link rel="stylesheet" href="game.css">
     </head>
     <body class="row container-fluid text-center justify-content-center">
         <main>
@@ -23,28 +23,31 @@
             <div id="bossHealth"></div>
             <!--GAME AREA-->
             <div id="playArea" class="d-none">
-            <div class="row justify-content-center">
-                <div id="yourCharacter" class="mt-5 mx-4 col-4">Char</div>
-                <div id="opponentCharacter" class="mt-5 col-4">Opp</div>
-            </div>
-            <div class="row justify-content-center">
-                <!--Player Health-->
-                <div id="playerHealthBackground" class="mt-5 mx-4 col-4">
-                    <p>Player Health</p>
-                    <div class="playerHealthWrap">
-                    <div id="playerHealthBar" class="playerHealthBar"></div>
-                    <div id="playerHealthBarLost" class="playerHealthBarLost"></div>
-                </div>
-                </div>
-                <!--Opponent Health-->
-                <div id="opponentHealthBackground" class="mt-5 col-4">
-                    <p>Opponent Health</p>
-                        <div class="opponentHealthWrap">
-                        <div id="opponentHealthBar" class="opponentHealthBar"></div>
-                        <div id="opponentHealthBarLost" class="opponentHealthBarLost"></div>
+                <div class="row justify-content-center align-items-center mt-5 gx-5">
+                    <!-- Player Side -->
+                    <div class="col-6 col-md-5 d-flex flex-column align-items-center">
+                      <div id="yourCharacter"></div>
+                      <div id="playerHealthBackground" class="mt-4 w-100 text-center">
+                        <p>Player Health</p>
+                        <div class="playerHealthWrap">
+                          <div id="playerHealthBar" class="playerHealthBar"></div>
+                          <div id="playerHealthBarLost" class="playerHealthBarLost"></div>
+                        </div>
+                      </div>
                     </div>
-                </div>
-            </div>
+                  
+                    <!-- Opponent Side -->
+                    <div class="col-6 col-md-5 d-flex flex-column align-items-center">
+                      <div id="opponentCharacter"></div>
+                      <div id="opponentHealthBackground" class="mt-4 w-100 text-center">
+                        <p>Opponent Health</p>
+                        <div class="opponentHealthWrap">
+                          <div id="opponentHealthBar" class="opponentHealthBar"></div>
+                          <div id="opponentHealthBarLost" class="opponentHealthBarLost"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>                  
             <!--Player Options-->
             <div id="playerMoves" class="col-5">
                 <h2 class="actionChoice">Attack</h2>
