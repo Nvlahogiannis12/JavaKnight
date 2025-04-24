@@ -79,6 +79,7 @@ let playerActionChoice = 0;
 let roundCount = 1;
 let playerHp = 100;
 let opponentHp = 100;
+let enemy;
 
 //when button is clicked this will get the location (variable) and save it across HTML Pages
 function startGame(location, destinationPage) {
@@ -192,9 +193,10 @@ function numberCodeEnemy() {
   }
 
   if (enemyNumber === 0) {
-    alert("slime");
+    enemy = new Enemy(50, "Slime", 50);
   } else if (enemyNumber === 1) {
-    //Forest Mons 1
+    //forest mons 1
+    enemy = new Enemy(100, "Thing", 100);
   } else if (enemyNumber === 2) {
     //Forest Mons 2
   } else if (enemyNumber === 3) {
@@ -222,7 +224,7 @@ function updateHealthBars() {
   let playerHealthBar = document.getElementById("playerHealthBar");
   let opponentHealthBar = document.getElementById("opponentHealthBar");
   playerHealthBar.setAttribute("style", `width: ${playerHp}%;`);
-  opponentHealthBar.setAttribute("style", `width: ${opponentHp}%;`);
+  opponentHealthBar.setAttribute("style", `width: 100%;`);
   if (playerHp <= 0) {
     alert("GAME OVER");
   }
@@ -231,11 +233,12 @@ function updateHealthBars() {
 function playerAttacking() {
   let playerAttackDamage = numberGenOp(0, 10);
   if (playerAttackDamage < 6) {
-    opponentHp -= 10;
+    enemy.hp -= 10;
+    //enemy.hp -= enemy.decrement
   } else if (playerAttackDamage >= 6 && playerAttackDamage > 10) {
-    opponentHp -= 20;
+    enemy.hp -= 20;
   } else {
-    opponentHp -= 30;
+    enemy.hp -= 30;
   }
   updateHealthBars();
   isCurrentTurn = false;
@@ -261,16 +264,27 @@ function enemyAttacking() {
 class Enemy {
   hp;
   name;
-  constructor(hp, name) {
+  maxHealth;
+  constructor(hp, name, maxHealth) {
     this.hp = hp;
     this.name = name;
+    this.maxHealth = maxHealth;
   }
   stats() {
     return `My HP is ${this.hp}`;
   }
+  get decrement() {
+    //solve equation for decrement value;
+    return (this.hp / this.maxHealth) * 100;
+  }
 }
 
+/*
+
+//Demonstration
 let slime = new Enemy(100, "Slime");
 let skeleton = new Enemy(50, "Skeleton");
 console.log("slime", slime, slime.stats());
 console.log("skeleton", skeleton);
+
+*/
