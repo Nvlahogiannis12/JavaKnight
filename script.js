@@ -194,6 +194,7 @@ function numberCodeEnemy() {
 
   if (enemyNumber === 0) {
     enemy = new Enemy(50, "Slime", 50);
+
   } else if (enemyNumber === 1) {
     //forest mons 1
     enemy = new Enemy(100, "Thing", 100);
@@ -224,7 +225,7 @@ function updateHealthBars() {
   let playerHealthBar = document.getElementById("playerHealthBar");
   let opponentHealthBar = document.getElementById("opponentHealthBar");
   playerHealthBar.setAttribute("style", `width: ${playerHp}%;`);
-  opponentHealthBar.setAttribute("style", `width: 100%;`);
+  opponentHealthBar.setAttribute("style", `width: ${enemy.decrement}%;`);
   if (playerHp <= 0) {
     alert("GAME OVER");
   }
@@ -275,6 +276,7 @@ class Enemy {
   }
   get decrement() {
     //solve equation for decrement value;
+    
     return (this.hp / this.maxHealth) * 100;
   }
 }
