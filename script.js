@@ -56,7 +56,6 @@ function playerMenuOptionSelected() {
   if (index === 0) {
     selectDungeon();
   } else if (index === 1) {
-    alert("Wha?");
   }
 }
 
@@ -170,6 +169,7 @@ function playerActionOptionSelected() {
   if (playerActionChoice === 0) {
     playerAttacking();
   } else if (playerActionChoice === 1) {
+    playerShielding();
   } else {
   }
 }
@@ -202,25 +202,25 @@ function numberCodeEnemy() {
     enemy = new Enemy(100, "Goblin", 100);
   } else if (enemyNumber === 3) {
     //Seas Mons 1
-    enemy = new Enemy(100, "Crab", 100)
+    enemy = new Enemy(100, "Crab", 100);
   } else if (enemyNumber === 4) {
     //Seas Mons 2
-    enemy = new Enemy(100, "Pirate", 100)
+    enemy = new Enemy(100, "Pirate", 100);
   } else if (enemyNumber === 5) {
     //Volcano Mons 1
-    enemy = new Enemy(100, "Baby Dragon", 100)
+    enemy = new Enemy(100, "Baby Dragon", 100);
   } else if (enemyNumber === 6) {
     //Volcano Mons 2
-    enemy = new Enemy(100, "Rock", 100)
+    enemy = new Enemy(100, "Rock", 100);
   } else if (enemyNumber === 7) {
     //Forest Boss
-    enemy = new Enemy(200, "ForestBoss", 200)
+    enemy = new Enemy(200, "ForestBoss", 200);
   } else if (enemyNumber === 8) {
     //Seas Boss
-    enemy = new Enemy(200, "SeaBoss", 200)
+    enemy = new Enemy(200, "SeaBoss", 200);
   } else if (enemyNumber === 9) {
     //Volcano Boss
-    enemy = new Enemy(200, 'VolcanoBoss', 200)
+    enemy = new Enemy(200, "VolcanoBoss", 200);
   }
 }
 
@@ -236,6 +236,11 @@ function updateHealthBars() {
   if (playerHp <= 0) {
     alert("GAME OVER");
   }
+  if (enemy.hp <= 0) {
+    alert("Round Win");
+    roundCount++;
+    numberCodeEnemy();
+  }
 }
 
 function playerAttacking() {
@@ -248,14 +253,14 @@ function playerAttacking() {
   } else {
     enemy.hp -= 30;
   }
-  if (enemy.hp <= 0){
-    enemy.hp = 0
+  if (enemy.hp <= 0) {
+    enemy.hp = 0;
   }
   updateHealthBars();
   isCurrentTurn = false;
   isMenu();
   enemyAttacking();
-  winCheck();
+  previousPlayerTurnMoves.push("Attack");
 }
 
 function enemyAttacking() {
@@ -267,13 +272,16 @@ function enemyAttacking() {
   } else {
     playerHp -= 30;
   }
-  if (playerHp <= 0){
-    playerHp = 0
+  if (playerHp <= 0) {
+    playerHp = 0;
   }
   updateHealthBars();
   isCurrentTurn = true;
   isMenu();
-  winCheck();
+}
+
+function playerShielding() {
+  alert("workin");
 }
 
 //Source: Remy
@@ -291,13 +299,12 @@ class Enemy {
   }
   get decrement() {
     //solve equation for decrement value;
-    
+
     return (this.hp / this.maxHealth) * 100;
   }
 }
 
 /*
-
 //Demonstration
 let slime = new Enemy(100, "Slime");
 let skeleton = new Enemy(50, "Skeleton");
@@ -306,7 +313,3 @@ console.log("skeleton", skeleton);
 
 */
 // End of code learned from Remy
-
-function winCheck(){
-  roundCount++
-  }
