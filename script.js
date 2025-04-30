@@ -71,7 +71,6 @@ function selectDungeon() {
 
 //GAME VARIABLES
 let previousPlayerTurnMoves = [];
-let previousOpponentTurnMoves = [];
 let playerMoveAction = ["Attack", "Shield", "Surrender"];
 let isCurrentTurn = false;
 let playerActionChoice = 0;
@@ -79,6 +78,7 @@ let roundCount = 1;
 let playerHp = 100;
 let opponentHp = 100;
 let enemy;
+let isShielding = false;
 
 //when button is clicked this will get the location (variable) and save it across HTML Pages
 function startGame(location, destinationPage) {
@@ -265,7 +265,11 @@ function playerAttacking() {
 
 function enemyAttacking() {
   let enemyAttackDamage = numberGenOp(0, 10);
-  if (enemyAttackDamage < 6) {
+  if (isShielding === true){
+    isShielding = false
+    return;
+  }
+  else if (enemyAttackDamage < 6) {
     playerHp -= 10;
   } else if (enemyAttackDamage >= 6 && enemyAttackDamage > 10) {
     playerHp -= 20;
@@ -282,6 +286,9 @@ function enemyAttacking() {
 
 function playerShielding() {
   alert("workin");
+  isShielding = true
+  enemy.hp -= 5
+  previousPlayerTurnMoves.push("Shield");
 }
 
 //Source: Remy
