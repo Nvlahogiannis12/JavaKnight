@@ -265,11 +265,9 @@ function playerAttacking() {
 
 function enemyAttacking() {
   let enemyAttackDamage = numberGenOp(0, 10);
-  if (isShielding === true){
-    isShielding = false
-    return;
-  }
-  else if (enemyAttackDamage < 6) {
+  if (isShielding === true) {
+    isShielding = false;
+  } else if (enemyAttackDamage < 6) {
     playerHp -= 10;
   } else if (enemyAttackDamage >= 6 && enemyAttackDamage > 10) {
     playerHp -= 20;
@@ -285,10 +283,17 @@ function enemyAttacking() {
 }
 
 function playerShielding() {
-  alert("workin");
-  isShielding = true
-  enemy.hp -= 5
-  previousPlayerTurnMoves.push("Shield");
+  if (
+    previousPlayerTurnMoves[previousPlayerTurnMoves.length - 1] === "Shield"
+  ) {
+    alert("You can't shield twice in a row!");
+  } else {
+    alert("workin");
+    isShielding = true;
+    enemy.hp -= 5;
+    previousPlayerTurnMoves.push("Shield");
+    updateHealthBars();
+  }
 }
 
 //Source: Remy
