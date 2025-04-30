@@ -325,3 +325,18 @@ console.log("skeleton", skeleton);
 
 */
 // End of code learned from Remy
+
+class Player {
+  hp;
+  maxHealth;
+  attackMultiply;
+  constructor(hp, maxHealth, attackMultiply) {
+    this.hp = hp;
+    this.maxHealth = maxHealth;
+    this.attackMultiply = attackMultiply;
+  }
+
+  // if()
+}
+
+//function onclickhealth(){}
