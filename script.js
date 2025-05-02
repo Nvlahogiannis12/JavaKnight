@@ -76,9 +76,11 @@ let isCurrentTurn = false;
 let playerActionChoice = 0;
 let roundCount = 1;
 let playerHp = 100;
+let maxPlayerHp = 100;
 let opponentHp = 100;
 let enemy;
 let isShielding = false;
+let damageMultiplier = 1;
 
 //when button is clicked this will get the location (variable) and save it across HTML Pages
 function startGame(location, destinationPage) {
@@ -246,12 +248,11 @@ function updateHealthBars() {
 function playerAttacking() {
   let playerAttackDamage = numberGenOp(0, 10);
   if (playerAttackDamage < 6) {
-    enemy.hp -= 10;
-    //enemy.hp -= enemy.decrement
+    enemy.hp -= 10 * damageMultiplier;
   } else if (playerAttackDamage >= 6 && playerAttackDamage > 10) {
-    enemy.hp -= 20;
+    enemy.hp -= 20 * damageMultiplier;
   } else {
-    enemy.hp -= 30;
+    enemy.hp -= 30 * damageMultiplier;
   }
   if (enemy.hp <= 0) {
     enemy.hp = 0;
@@ -326,17 +327,11 @@ console.log("skeleton", skeleton);
 */
 // End of code learned from Remy
 
-class Player {
-  hp;
-  maxHealth;
-  attackMultiply;
-  constructor(hp, maxHealth, attackMultiply) {
-    this.hp = hp;
-    this.maxHealth = maxHealth;
-    this.attackMultiply = attackMultiply;
+function boost(selected) {
+  if (selected === "health") {
+  } else {
+    damageMultiplier = damageMultiplier * 1.5;
   }
-
-  // if()
 }
 
-//function onclickhealth(){}
+function playerHpCalc() {}
