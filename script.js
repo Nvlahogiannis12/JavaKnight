@@ -45,7 +45,7 @@ function isMenu() {
   }
   if (isCurrentTurn === true) {
     window.addEventListener("keydown", playerKeyDownsAction);
-  } else {
+  } else if (isCurrentTurn === false) {
     window.removeEventListener("keydown", playerKeyDownsAction);
   }
 }
@@ -81,6 +81,7 @@ let opponentHp = 100;
 let enemy;
 let isShielding = false;
 let damageMultiplier = 1;
+let displayHp;
 
 //when button is clicked this will get the location (variable) and save it across HTML Pages
 function startGame(location, destinationPage) {
@@ -231,17 +232,22 @@ function numberGenOp(min, max) {
 }
 
 function updateHealthBars() {
+  playerHpCalc()
   let playerHealthBar = document.getElementById("playerHealthBar");
   let opponentHealthBar = document.getElementById("opponentHealthBar");
-  playerHealthBar.setAttribute("style", `width: ${playerHp}%;`);
+  playerHealthBar.setAttribute("style", `width: ${displayHp}%;`);
   opponentHealthBar.setAttribute("style", `width: ${enemy.decrement}%;`);
   if (playerHp <= 0) {
     alert("GAME OVER");
   }
   if (enemy.hp <= 0) {
-    alert("Round Win");
-    roundCount++;
-    numberCodeEnemy();
+    isCurrentTurn = false
+      isMenu(); 
+    if(roundCount < 3){
+      document.getElementById('boostOption').classList.remove('d-none')
+    } else {
+      alert("WINNER!")
+    }
   }
 }
 
@@ -278,8 +284,8 @@ function enemyAttacking() {
   if (playerHp <= 0) {
     playerHp = 0;
   }
-  updateHealthBars();
   isCurrentTurn = true;
+  updateHealthBars();
   isMenu();
 }
 
@@ -328,10 +334,19 @@ console.log("skeleton", skeleton);
 // End of code learned from Remy
 
 function boost(selected) {
+  playerHp = maxPlayerHp
   if (selected === "health") {
+    playerHp = playerHp * 1.5
+    maxPlayerHp = maxPlayerHp * 1.5
   } else {
     damageMultiplier = damageMultiplier * 1.5;
   }
+  roundCount++;
+  numberCodeEnemy();
+  updateHealthBars();
+ document.getElementById('boostOption').classList.add('d-none')
 }
 
-function playerHpCalc() {}
+function playerHpCalc() {
+displayHp = (playerHp / maxPlayerHp) * 100
+}
