@@ -174,6 +174,9 @@ function playerActionOptionSelected() {
   } else if (playerActionChoice === 1) {
     playerShielding();
   } else {
+    gameEnding('You lose')
+    playerHp = 0
+    updateHealthBars()
   }
 }
 
@@ -238,15 +241,19 @@ function updateHealthBars() {
   playerHealthBar.setAttribute("style", `width: ${displayHp}%;`);
   opponentHealthBar.setAttribute("style", `width: ${enemy.decrement}%;`);
   if (playerHp <= 0) {
-    alert("GAME OVER");
+    isCurrentTurn = false
+    isMenu()
+    document.getElementById('resultBox').classList.remove('d-none')
+    gameEnding('-You Lose-')
   }
   if (enemy.hp <= 0) {
     isCurrentTurn = false
-      isMenu(); 
+      isMenu();
     if(roundCount < 3){
       document.getElementById('boostOption').classList.remove('d-none')
     } else {
-      alert("WINNER!")
+      document.getElementById('resultBox').classList.remove('d-none')
+      gameEnding('-You Win-')
     }
   }
 }
@@ -295,7 +302,6 @@ function playerShielding() {
   ) {
     alert("You can't shield twice in a row!");
   } else {
-    alert("workin");
     isShielding = true;
     enemy.hp -= 5;
     previousPlayerTurnMoves.push("Shield");
@@ -344,9 +350,15 @@ function boost(selected) {
   roundCount++;
   numberCodeEnemy();
   updateHealthBars();
+  isCurrentTurn = true
+  isMenu()
  document.getElementById('boostOption').classList.add('d-none')
 }
 
 function playerHpCalc() {
 displayHp = (playerHp / maxPlayerHp) * 100
+}
+
+function gameEnding(result){
+document.getElementById('resultOfGame').innerText = `${result}`
 }
