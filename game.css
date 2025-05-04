@@ -6,12 +6,10 @@ body{
     background-attachment:fixed;
 }
 #yourCharacter{
-    background-color: deepskyblue;
     height:200px;
     width:200px;
 }
 #opponentCharacter{
-    background-color: maroon;
     height:200px;
     width:200px;
 }

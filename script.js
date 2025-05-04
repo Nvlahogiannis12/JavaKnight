@@ -185,11 +185,11 @@ function numberCodeEnemy() {
   if (roundCount === 1) {
     enemyNumber = 0;
   } else if (roundCount === 2 && level === "forest") {
-    enemyNumber = numberGenOp(1, 2);
+    enemyNumber = numberGenOp(1, 1);
   } else if (roundCount === 2 && level === "seas") {
-    enemyNumber = numberGenOp(3, 4);
+    enemyNumber = numberGenOp(3, 3);
   } else if (roundCount === 2 && level === "volcano") {
-    enemyNumber = numberGenOp(5, 6);
+    enemyNumber = numberGenOp(6, 6);
   } else if (roundCount === 3 && level === "forest") {
     enemyNumber = 7;
   } else if (roundCount === 3 && level === "seas") {
@@ -200,15 +200,18 @@ function numberCodeEnemy() {
 
   if (enemyNumber === 0) {
     enemy = new Enemy(50, "Slime", 50);
+    document.getElementById('opponentCharacter').src = 'imgs/Slime_JavaKnight.png'
   } else if (enemyNumber === 1) {
     //forest mons 1
     enemy = new Enemy(100, "Thing", 100);
+    document.getElementById('opponentCharacter').src = 'imgs/Chicken_JavaKnight.png'
   } else if (enemyNumber === 2) {
     //Forest Mons 2
     enemy = new Enemy(100, "Goblin", 100);
   } else if (enemyNumber === 3) {
     //Seas Mons 1
     enemy = new Enemy(100, "Crab", 100);
+    document.getElementById('opponentCharacter').src = 'imgs/Crab_JavaKnight.png'
   } else if (enemyNumber === 4) {
     //Seas Mons 2
     enemy = new Enemy(100, "Pirate", 100);
@@ -218,15 +221,19 @@ function numberCodeEnemy() {
   } else if (enemyNumber === 6) {
     //Volcano Mons 2
     enemy = new Enemy(100, "Rock", 100);
+    document.getElementById('opponentCharacter').src = 'imgs/Rock_JavaKnight.png'
   } else if (enemyNumber === 7) {
     //Forest Boss
     enemy = new Enemy(200, "ForestBoss", 200);
+    document.getElementById('opponentCharacter').src = 'imgs/Tree_Monster_JavaKnight.png'
   } else if (enemyNumber === 8) {
     //Seas Boss
     enemy = new Enemy(200, "SeaBoss", 200);
+    document.getElementById('opponentCharacter').src = 'imgs/Pirate_JavaKnight.png'
   } else if (enemyNumber === 9) {
     //Volcano Boss
     enemy = new Enemy(200, "VolcanoBoss", 200);
+    document.getElementById('opponentCharacter').src = 'imgs/Lava_JavaKnight.png'
   }
 }
 
