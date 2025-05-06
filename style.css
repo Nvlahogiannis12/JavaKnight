@@ -5,6 +5,7 @@ body{
     background-repeat:no-repeat;
     background-attachment:fixed;
     color:white;
+    overflow:hidden;
 }
 .titleSword{
     height:50%
@@ -26,6 +27,7 @@ body{
     right: 0;
     height: 100%;
     width: 300px;
+    border-left:solid white 1px;
 }
 @media screen and (max-width: 800px){
     .gameName{
@@ -41,6 +43,10 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    margin-top:20px;
+    border:solid 1px;
+    border-radius:10px;
+    border-color:white;
 }
 .forest{
     width: 50%;
@@ -90,7 +96,20 @@ body{
     background-repeat:no-repeat;
     background-attachment:fixed;
 }
-
+#rulesSelect{
+    background-color: rgb(60, 90, 90);
+    position: absolute;
+    height: 450px;
+    aspect-ratio: 3/4;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top:20px;
+    border:solid 1px;
+    border-radius:10px;
+    border-color:white;
+    z-index:1;
+}
 
 /* <div class="gameTitle mt-4 container-fluid" id="gameTitle">
                 <h1 class="gameName">Java Knight</h1>
@@ -99,17 +118,51 @@ body{
 .flash{
 animation:flash;
 animation-timing-function: linear;
-animation-duration: 0.1s;
+animation-duration: 0.5s;
 animation-iteration-count: infinite;
 }
 @keyframes flash{
 0%{
-opacity: 0;
+filter: brightness(1);
 }
 50%{
-opacity: 1;
+filter: brightness(2);
 }
 100%{
-opacity: 0;
+filter:brightness(1);
 }
+}
+
+.slide{
+    animation:slide;
+    animation-timing-function: linear;
+    animation-duration:0.5s;
+    animation-iteration-count: 1;
+    overflow:hidden;
+}
+@keyframes slide{
+    0%{
+        transform: translateX(100%)
+    }
+    100%{
+        transform: translateX(0%)
+    }
+}
+.slideUp{
+    animation:slideUp;
+    animation-timing-function: linear;
+    animation-duration:0.4s;
+    animation-iteration-count: 1;
+    overflow:hidden;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, 0);
+}
+@keyframes slideUp{
+    0%{
+        transform: translate(-50%, -25%)
+    }
+    100%{
+        transform: translateY(-50%, -100%)
+    }
 }

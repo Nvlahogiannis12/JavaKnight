@@ -20,26 +20,37 @@
     </head>
     <body class="row container-fluid text-center justify-content-center">
         <main>
-            <div class="startMenuBG" id="startMenuBG">
+            <div class="startMenuBG slide" id="startMenuBG">
                 <a onclick="selectDungeon()">
                     <h1 class="mt-4 selectionBox">Start</h1>
                 </a>
-                    
-                    <h1 class="selectionBox">Options</h1>
-                        
+                <a onclick="rules('entering')">
+                    <h1 class="selectionBox">Rules</h1>
+                </a>
             </div>
             <!--<img src="/imgs/Sword.Removedbg.png" class="titleSword"> -->
                 <h1 class="gameName">Java Knight</h1>
-            <div id="gameSelectDungeon" class="d-none">
+            <div id="gameSelectDungeon" class="d-none slideUp">
                 <h2 class="my-2">Pick a Dungeon:</h2>
                 <div class="my-4">
-                    <button class="btn difficulty-btn forest" onclick="startGame('forest', 'forest.html')">Forest</button>
+                    <button class="btn difficulty-btn forest dungeonBtn" onclick="startGame('forest', 'forest.html')">Forest</button>
                 </div>
                 <div class="my-4">
-                    <button class="btn difficulty-btn seas" onclick="startGame('seas', 'seas.html')">Seas</button>
+                    <button class="btn difficulty-btn seas dungeonBtn" onclick="startGame('seas', 'seas.html')">Seas</button>
                 </div>
                 <div class="my-4">
-                    <button class="btn difficulty-btn volcano" onclick="startGame('volcano', 'volcano.html')">Volcano</button>
+                    <button class="btn difficulty-btn volcano dungeonBtn" onclick="startGame('volcano', 'volcano.html')">Volcano</button>
+                </div>
+            </div>
+
+            <div id="rulesSelect" class="slideUp d-none">
+                <h2 class="my-2">Rules:</h2>
+                <p><strong>Java Knight</strong> is a turn-based combat game where you face 3 rounds of enemies, including monsters and bosses.</p>
+                <p><strong>Combat:</strong> Attack success depends on luck. Damage ranges from 10-30, with higher damage needing more luck.</p>
+                <p><strong>Shielding:</strong> Shields block all damage and deal 5 damage but can only be used every other turn.</p>
+                <p><strong>Upgrades:</strong> After each round, upgrade your stats to prepare for the next battle. Choose wisely!</p>
+                <div class="my-2">
+                    <button class="btn btn-danger" onclick="rules('exit')">Back</button>
                 </div>
             </div>
         </main>

@@ -1,4 +1,4 @@
-let playerMenuOptions = ["Start", "Options"];
+let playerMenuOptions = ["Start", "Rules"];
 let index = 0;
 let firstOptions = true;
 
@@ -56,6 +56,7 @@ function playerMenuOptionSelected() {
   if (index === 0) {
     selectDungeon();
   } else if (index === 1) {
+    rules('entering')
   }
 }
 
@@ -65,6 +66,18 @@ function selectDungeon() {
   document.getElementById("startMenuBG").classList.add("d-none");
   document.getElementById("gameSelectDungeon").classList.remove("d-none");
   isMenu();
+}
+
+function rules(gateway){
+  firstOptions = false;
+  if(gateway === 'entering'){
+  document.getElementById("startMenuBG").classList.add("d-none");
+  document.getElementById("rulesSelect").classList.remove("d-none")
+  } else if(gateway === 'exit'){
+document.getElementById("rulesSelect").classList.add("d-none")
+document.getElementById("startMenuBG").classList.remove("d-none");
+firstOptions = true;
+  }
 }
 
 //START OF CODE FOR ACTUAL GAME
@@ -84,15 +97,63 @@ let damageMultiplier = 1;
 let displayHp;
 
 //when button is clicked this will get the location (variable) and save it across HTML Pages
+/*
 function startGame(location, destinationPage) {
-  localStorage.setItem("level", location);
-  window.location.href = destinationPage;
+  function innerStartGame() {
+    localStorage.setItem("level", location);
+    window.location.href = destinationPage;
+  }
+    // Add flash class to all dungeon buttons
+    document.querySelectorAll('.dungeonBtn').forEach(btn => {
+      btn.classList.add("flash");
+    });
+    if (location === "forest") {
+      document.forest.style.backgroundImage = "url('imgs/ForestBG.jpg')";
+    } else if (location === "seas") {
+      document.seas.style.backgroundImage = "url('imgs/Shores.webp')";
+    } else if (location === "volcano") {
+      document.volcano.style.backgroundImage = "url('imgs/Volcanic-Wastelands.png')";
+    }
+    // Hide all dungeon buttons that are NOT the selected location
+    const btns = Array.from(
+      document.querySelectorAll(`.dungeonBtn:not(.${location})`)
+    );
+    btns.forEach(btn => {
+      btn.classList.add("d-none");
+    });
+  //document.querySelectorAll('dungeonBtn').classList.add("flash");
+  setTimeout(innerStartGame, 2000);
 }
+*/
+function startGame(location, destinationPage) {
+  function innerStartGame() {
+    localStorage.setItem("level", location);
+    window.location.href = destinationPage;
+  }
+
+  // Add flash class to all dungeon buttons
+  document.querySelectorAll('.dungeonBtn').forEach(btn => {
+    btn.classList.add("flash");
+  });
+
+
+  // Hide all dungeon buttons that are NOT the selected location
+  const btns = Array.from(
+    document.querySelectorAll(`.dungeonBtn:not(.${location})`)
+  );
+  btns.forEach(btn => {
+    btn.classList.add("d-none");
+  });
+
+  setTimeout(innerStartGame, 2000);
+}
+
 
 let level = localStorage.getItem("level");
 if (level === "forest" || level === "seas" || level === "volcano") {
   genLoadingType();
 }
+
 //random number
 function getLoadingNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -174,9 +235,9 @@ function playerActionOptionSelected() {
   } else if (playerActionChoice === 1) {
     playerShielding();
   } else {
-    gameEnding('You lose')
-    playerHp = 0
-    updateHealthBars()
+    gameEnding("You lose");
+    playerHp = 0;
+    updateHealthBars();
   }
 }
 
@@ -200,18 +261,21 @@ function numberCodeEnemy() {
 
   if (enemyNumber === 0) {
     enemy = new Enemy(50, "Slime", 50);
-    document.getElementById('opponentCharacter').src = 'imgs/Slime_JavaKnight.png'
+    document.getElementById("opponentCharacter").src =
+      "imgs/Slime_JavaKnight.png";
   } else if (enemyNumber === 1) {
     //forest mons 1
     enemy = new Enemy(100, "Thing", 100);
-    document.getElementById('opponentCharacter').src = 'imgs/Chicken_JavaKnight.png'
+    document.getElementById("opponentCharacter").src =
+      "imgs/Chicken_JavaKnight.png";
   } else if (enemyNumber === 2) {
     //Forest Mons 2
     enemy = new Enemy(100, "Goblin", 100);
   } else if (enemyNumber === 3) {
     //Seas Mons 1
     enemy = new Enemy(100, "Crab", 100);
-    document.getElementById('opponentCharacter').src = 'imgs/Crab_JavaKnight.png'
+    document.getElementById("opponentCharacter").src =
+      "imgs/Crab_JavaKnight.png";
   } else if (enemyNumber === 4) {
     //Seas Mons 2
     enemy = new Enemy(100, "Pirate", 100);
@@ -221,19 +285,23 @@ function numberCodeEnemy() {
   } else if (enemyNumber === 6) {
     //Volcano Mons 2
     enemy = new Enemy(100, "Rock", 100);
-    document.getElementById('opponentCharacter').src = 'imgs/Rock_JavaKnight.png'
+    document.getElementById("opponentCharacter").src =
+      "imgs/Rock_JavaKnight.png";
   } else if (enemyNumber === 7) {
     //Forest Boss
     enemy = new Enemy(200, "ForestBoss", 200);
-    document.getElementById('opponentCharacter').src = 'imgs/Tree_Monster_JavaKnight.png'
+    document.getElementById("opponentCharacter").src =
+      "imgs/Tree_Monster_JavaKnight.png";
   } else if (enemyNumber === 8) {
     //Seas Boss
     enemy = new Enemy(200, "SeaBoss", 200);
-    document.getElementById('opponentCharacter').src = 'imgs/Pirate_JavaKnight.png'
+    document.getElementById("opponentCharacter").src =
+      "imgs/Pirate_JavaKnight.png";
   } else if (enemyNumber === 9) {
     //Volcano Boss
     enemy = new Enemy(200, "VolcanoBoss", 200);
-    document.getElementById('opponentCharacter').src = 'imgs/Lava_JavaKnight.png'
+    document.getElementById("opponentCharacter").src =
+      "imgs/Lava_JavaKnight.png";
   }
 }
 
@@ -242,25 +310,25 @@ function numberGenOp(min, max) {
 }
 
 function updateHealthBars() {
-  playerHpCalc()
+  playerHpCalc();
   let playerHealthBar = document.getElementById("playerHealthBar");
   let opponentHealthBar = document.getElementById("opponentHealthBar");
   playerHealthBar.setAttribute("style", `width: ${displayHp}%;`);
   opponentHealthBar.setAttribute("style", `width: ${enemy.decrement}%;`);
   if (playerHp <= 0) {
-    isCurrentTurn = false
-    isMenu()
-    document.getElementById('resultBox').classList.remove('d-none')
-    gameEnding('-You Lose-')
+    isCurrentTurn = false;
+    isMenu();
+    document.getElementById("resultBox").classList.remove("d-none");
+    gameEnding("-You Lose-");
   }
   if (enemy.hp <= 0) {
-    isCurrentTurn = false
-      isMenu();
-    if(roundCount < 3){
-      document.getElementById('boostOption').classList.remove('d-none')
+    isCurrentTurn = false;
+    isMenu();
+    if (roundCount < 3) {
+      document.getElementById("boostOption").classList.remove("d-none");
     } else {
-      document.getElementById('resultBox').classList.remove('d-none')
-      gameEnding('-You Win-')
+      document.getElementById("resultBox").classList.remove("d-none");
+      gameEnding("-You Win-");
     }
   }
 }
@@ -347,25 +415,25 @@ console.log("skeleton", skeleton);
 // End of code learned from Remy
 
 function boost(selected) {
-  playerHp = maxPlayerHp
+  playerHp = maxPlayerHp;
   if (selected === "health") {
-    playerHp = playerHp * 1.5
-    maxPlayerHp = maxPlayerHp * 1.5
+    playerHp = playerHp * 1.5;
+    maxPlayerHp = maxPlayerHp * 1.5;
   } else {
     damageMultiplier = damageMultiplier * 1.5;
   }
   roundCount++;
   numberCodeEnemy();
   updateHealthBars();
-  isCurrentTurn = true
-  isMenu()
- document.getElementById('boostOption').classList.add('d-none')
+  isCurrentTurn = true;
+  isMenu();
+  document.getElementById("boostOption").classList.add("d-none");
 }
 
 function playerHpCalc() {
-displayHp = (playerHp / maxPlayerHp) * 100
+  displayHp = (playerHp / maxPlayerHp) * 100;
 }
 
-function gameEnding(result){
-document.getElementById('resultOfGame').innerText = `${result}`
+function gameEnding(result) {
+  document.getElementById("resultOfGame").innerText = `${result}`;
 }
