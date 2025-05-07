@@ -56,7 +56,7 @@ function playerMenuOptionSelected() {
   if (index === 0) {
     selectDungeon();
   } else if (index === 1) {
-    rules('entering')
+    rules("entering");
   }
 }
 
@@ -68,15 +68,15 @@ function selectDungeon() {
   isMenu();
 }
 
-function rules(gateway){
+function rules(gateway) {
   firstOptions = false;
-  if(gateway === 'entering'){
-  document.getElementById("startMenuBG").classList.add("d-none");
-  document.getElementById("rulesSelect").classList.remove("d-none")
-  } else if(gateway === 'exit'){
-document.getElementById("rulesSelect").classList.add("d-none")
-document.getElementById("startMenuBG").classList.remove("d-none");
-firstOptions = true;
+  if (gateway === "entering") {
+    document.getElementById("startMenuBG").classList.add("d-none");
+    document.getElementById("rulesSelect").classList.remove("d-none");
+  } else if (gateway === "exit") {
+    document.getElementById("rulesSelect").classList.add("d-none");
+    document.getElementById("startMenuBG").classList.remove("d-none");
+    firstOptions = true;
   }
 }
 
@@ -97,34 +97,6 @@ let damageMultiplier = 1;
 let displayHp;
 
 //when button is clicked this will get the location (variable) and save it across HTML Pages
-/*
-function startGame(location, destinationPage) {
-  function innerStartGame() {
-    localStorage.setItem("level", location);
-    window.location.href = destinationPage;
-  }
-    // Add flash class to all dungeon buttons
-    document.querySelectorAll('.dungeonBtn').forEach(btn => {
-      btn.classList.add("flash");
-    });
-    if (location === "forest") {
-      document.forest.style.backgroundImage = "url('imgs/ForestBG.jpg')";
-    } else if (location === "seas") {
-      document.seas.style.backgroundImage = "url('imgs/Shores.webp')";
-    } else if (location === "volcano") {
-      document.volcano.style.backgroundImage = "url('imgs/Volcanic-Wastelands.png')";
-    }
-    // Hide all dungeon buttons that are NOT the selected location
-    const btns = Array.from(
-      document.querySelectorAll(`.dungeonBtn:not(.${location})`)
-    );
-    btns.forEach(btn => {
-      btn.classList.add("d-none");
-    });
-  //document.querySelectorAll('dungeonBtn').classList.add("flash");
-  setTimeout(innerStartGame, 2000);
-}
-*/
 function startGame(location, destinationPage) {
   function innerStartGame() {
     localStorage.setItem("level", location);
@@ -132,22 +104,20 @@ function startGame(location, destinationPage) {
   }
 
   // Add flash class to all dungeon buttons
-  document.querySelectorAll('.dungeonBtn').forEach(btn => {
+  document.querySelectorAll(".dungeonBtn").forEach((btn) => {
     btn.classList.add("flash");
   });
-
 
   // Hide all dungeon buttons that are NOT the selected location
   const btns = Array.from(
     document.querySelectorAll(`.dungeonBtn:not(.${location})`)
   );
-  btns.forEach(btn => {
+  btns.forEach((btn) => {
     btn.classList.add("d-none");
   });
 
   setTimeout(innerStartGame, 2000);
 }
-
 
 let level = localStorage.getItem("level");
 if (level === "forest" || level === "seas" || level === "volcano") {
@@ -348,14 +318,14 @@ function playerAttacking() {
   updateHealthBars();
   isCurrentTurn = false;
   isMenu();
+  isShielding = false;
   enemyAttacking();
   previousPlayerTurnMoves.push("Attack");
 }
 
 function enemyAttacking() {
   let enemyAttackDamage = numberGenOp(0, 10);
-  if (isShielding === true) {
-    isShielding = false;
+  if (isShielding == true) {
   } else if (enemyAttackDamage < 6) {
     playerHp -= 10;
   } else if (enemyAttackDamage >= 6 && enemyAttackDamage > 10) {
@@ -437,3 +407,15 @@ function playerHpCalc() {
 function gameEnding(result) {
   document.getElementById("resultOfGame").innerText = `${result}`;
 }
+/*
+let myArray = [a,b,c];
+
+sessionStorage.setItem(enemies, JSON.stringify(myArray));
+
+let myArray JSON.parse(sessionStorage.getItem(enemies))
+
+
+myArray.push('monstair')
+if (myArray.includes("given")) add
+
+*/
