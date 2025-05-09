@@ -1,7 +1,6 @@
 let playerMenuOptions = ["Start", "Rules"];
 let index = 0;
 let firstOptions = true;
-
 window.onload = function () {
   isMenu();
   updatePlayerActionOption();
@@ -79,7 +78,7 @@ function rules(gateway) {
     firstOptions = true;
   }
 }
-
+/////////////////////////////////////////////////////////////////////
 //START OF CODE FOR ACTUAL GAME
 
 //GAME VARIABLES
@@ -95,14 +94,14 @@ let enemy;
 let isShielding = false;
 let damageMultiplier = 1;
 let displayHp;
-
+let monstersSeen = [];
+let monstersLocated = JSON.parse(sessionStorage.getItem("enemies"));
 //when button is clicked this will get the location (variable) and save it across HTML Pages
 function startGame(location, destinationPage) {
   function innerStartGame() {
     localStorage.setItem("level", location);
     window.location.href = destinationPage;
   }
-
   // Add flash class to all dungeon buttons
   document.querySelectorAll(".dungeonBtn").forEach((btn) => {
     btn.classList.add("flash");
@@ -118,12 +117,10 @@ function startGame(location, destinationPage) {
 
   setTimeout(innerStartGame, 2000);
 }
-
 let level = localStorage.getItem("level");
 if (level === "forest" || level === "seas" || level === "volcano") {
   genLoadingType();
 }
-
 //random number
 function getLoadingNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -233,45 +230,75 @@ function numberCodeEnemy() {
     enemy = new Enemy(50, "Slime", 50);
     document.getElementById("opponentCharacter").src =
       "imgs/Slime_JavaKnight.png";
+    if (!monstersSeen.includes(1)) {
+      monstersSeen.push(1);
+    }
   } else if (enemyNumber === 1) {
     //forest mons 1
     enemy = new Enemy(100, "Thing", 100);
     document.getElementById("opponentCharacter").src =
       "imgs/Chicken_JavaKnight.png";
+    if (!monstersSeen.includes(2)) {
+      monstersSeen.push(2);
+    }
   } else if (enemyNumber === 2) {
     //Forest Mons 2
     enemy = new Enemy(100, "Goblin", 100);
+    if (!monstersSeen.includes(3)) {
+      monstersSeen.push(3);
+    }
   } else if (enemyNumber === 3) {
     //Seas Mons 1
     enemy = new Enemy(100, "Crab", 100);
     document.getElementById("opponentCharacter").src =
       "imgs/Crab_JavaKnight.png";
+    if (!monstersSeen.includes(4)) {
+      monstersSeen.push(4);
+    }
   } else if (enemyNumber === 4) {
     //Seas Mons 2
     enemy = new Enemy(100, "Pirate", 100);
+    if (!monstersSeen.includes(5)) {
+      monstersSeen.push(5);
+    }
   } else if (enemyNumber === 5) {
     //Volcano Mons 1
     enemy = new Enemy(100, "Baby Dragon", 100);
+    if (!monstersSeen.includes(6)) {
+      monstersSeen.push(6);
+    }
   } else if (enemyNumber === 6) {
     //Volcano Mons 2
     enemy = new Enemy(100, "Rock", 100);
     document.getElementById("opponentCharacter").src =
       "imgs/Rock_JavaKnight.png";
+    if (!monstersSeen.includes(7)) {
+      monstersSeen.push(7);
+    }
   } else if (enemyNumber === 7) {
     //Forest Boss
     enemy = new Enemy(200, "ForestBoss", 200);
     document.getElementById("opponentCharacter").src =
       "imgs/Tree_Monster_JavaKnight.png";
+    if (!monstersSeen.includes(8)) {
+      monstersSeen.push(8);
+    }
   } else if (enemyNumber === 8) {
     //Seas Boss
     enemy = new Enemy(200, "SeaBoss", 200);
     document.getElementById("opponentCharacter").src =
       "imgs/Pirate_JavaKnight.png";
+    if (!monstersSeen.includes(9)) {
+      monstersSeen.push(9);
+    }
   } else if (enemyNumber === 9) {
     //Volcano Boss
     enemy = new Enemy(200, "VolcanoBoss", 200);
     document.getElementById("opponentCharacter").src =
       "imgs/Lava_JavaKnight.png";
+    if (!monstersSeen.includes(10)) {
+      monstersSeen.push(10);
+    }
   }
 }
 
@@ -353,7 +380,6 @@ function playerShielding() {
     updateHealthBars();
   }
 }
-
 //Source: Remy
 class Enemy {
   hp;
@@ -373,7 +399,6 @@ class Enemy {
     return (this.hp / this.maxHealth) * 100;
   }
 }
-
 /*
 //Demonstration
 let slime = new Enemy(100, "Slime");
@@ -406,16 +431,19 @@ function playerHpCalc() {
 
 function gameEnding(result) {
   document.getElementById("resultOfGame").innerText = `${result}`;
+  //saves an array
+  let temp = JSON.parse(sessionStorage.getItem("enemies"));
+  if (temp) {
+    alert(temp);
+    temp.push(...monstersSeen);
+    sessionStorage.setItem("enemies", JSON.stringify(temp));
+  } else sessionStorage.setItem("enemies", JSON.stringify(monstersSeen));
 }
-/*
-let myArray = [a,b,c];
 
-sessionStorage.setItem(enemies, JSON.stringify(myArray));
-
-let myArray JSON.parse(sessionStorage.getItem(enemies))
-
-
-myArray.push('monstair')
-if (myArray.includes("given")) add
-
-*/
+//Cache Clear Code
+window.addEventListener("keydown", (event) => {
+  if (event.key === "!") {
+    alert("Debug Mode Active");
+    sessionStorage.setItem("enemies", null);
+  }
+});
