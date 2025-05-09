@@ -183,3 +183,6 @@ filter:brightness(1);
         transform: translateY(-50%, -100%)
     }
 }
+.number-font{
+    font-family: serif;
+}

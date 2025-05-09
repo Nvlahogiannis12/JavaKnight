@@ -1,4 +1,4 @@
-let playerMenuOptions = ["Start", "Rules"];
+let playerMenuOptions = ["Start", "Rules", "Monsters"];
 let index = 0;
 let firstOptions = true;
 window.onload = function () {
@@ -56,6 +56,8 @@ function playerMenuOptionSelected() {
     selectDungeon();
   } else if (index === 1) {
     rules("entering");
+  } else if (index == 2) {
+    alert("monsterDex");
   }
 }
 
@@ -129,17 +131,19 @@ function getLoadingNumber(min, max) {
 //Random Number Creates A Message For Load Screen (Maybe tips for player in Future)
 function genLoadingType() {
   let loadingNumber = getLoadingNumber(0, 3);
-  if (loadingNumber === 0) {
-    document.getElementById("loadingType").innerText = `Traveling...`;
-  } else if (loadingNumber === 1) {
-    document.getElementById("loadingType").innerText = `Discovering...`;
-  } else if (loadingNumber === 2) {
-    document.getElementById("loadingType").innerText = `Journeying...`;
-  } else if (loadingNumber === 3) {
-    document.getElementById("loadingType").innerText = `Preparing...`;
+  if (document.getElementById("loadingType")) {
+    if (loadingNumber === 0) {
+      document.getElementById("loadingType").innerText = `Traveling...`;
+    } else if (loadingNumber === 1) {
+      document.getElementById("loadingType").innerText = `Discovering...`;
+    } else if (loadingNumber === 2) {
+      document.getElementById("loadingType").innerText = `Journeying...`;
+    } else if (loadingNumber === 3) {
+      document.getElementById("loadingType").innerText = `Preparing...`;
+    }
+    //after 4 seconds (4000 milliseconds) it calls this function to make it vanish
+    setTimeout(loadScreenVanish, 4000);
   }
-  //after 4 seconds (4000 milliseconds) it calls this function to make it vanish
-  setTimeout(loadScreenVanish, 4000);
 }
 //what to do after time delay in genLoadingType
 function loadScreenVanish() {
@@ -230,75 +234,61 @@ function numberCodeEnemy() {
     enemy = new Enemy(50, "Slime", 50);
     document.getElementById("opponentCharacter").src =
       "imgs/Slime_JavaKnight.png";
-    if (!monstersSeen.includes(1)) {
-      monstersSeen.push(1);
-    }
+    check(1);
   } else if (enemyNumber === 1) {
     //forest mons 1
     enemy = new Enemy(100, "Thing", 100);
     document.getElementById("opponentCharacter").src =
       "imgs/Chicken_JavaKnight.png";
-    if (!monstersSeen.includes(2)) {
-      monstersSeen.push(2);
-    }
+    check(2);
   } else if (enemyNumber === 2) {
     //Forest Mons 2
     enemy = new Enemy(100, "Goblin", 100);
-    if (!monstersSeen.includes(3)) {
-      monstersSeen.push(3);
-    }
+    check(3);
   } else if (enemyNumber === 3) {
     //Seas Mons 1
     enemy = new Enemy(100, "Crab", 100);
     document.getElementById("opponentCharacter").src =
       "imgs/Crab_JavaKnight.png";
-    if (!monstersSeen.includes(4)) {
-      monstersSeen.push(4);
-    }
+    check(4);
   } else if (enemyNumber === 4) {
     //Seas Mons 2
     enemy = new Enemy(100, "Pirate", 100);
-    if (!monstersSeen.includes(5)) {
-      monstersSeen.push(5);
-    }
+    check(5);
   } else if (enemyNumber === 5) {
     //Volcano Mons 1
     enemy = new Enemy(100, "Baby Dragon", 100);
-    if (!monstersSeen.includes(6)) {
-      monstersSeen.push(6);
-    }
+    check(6);
   } else if (enemyNumber === 6) {
     //Volcano Mons 2
     enemy = new Enemy(100, "Rock", 100);
     document.getElementById("opponentCharacter").src =
       "imgs/Rock_JavaKnight.png";
-    if (!monstersSeen.includes(7)) {
-      monstersSeen.push(7);
-    }
+    check(7);
   } else if (enemyNumber === 7) {
     //Forest Boss
     enemy = new Enemy(200, "ForestBoss", 200);
     document.getElementById("opponentCharacter").src =
       "imgs/Tree_Monster_JavaKnight.png";
-    if (!monstersSeen.includes(8)) {
-      monstersSeen.push(8);
-    }
+    check(8);
   } else if (enemyNumber === 8) {
     //Seas Boss
     enemy = new Enemy(200, "SeaBoss", 200);
     document.getElementById("opponentCharacter").src =
       "imgs/Pirate_JavaKnight.png";
-    if (!monstersSeen.includes(9)) {
-      monstersSeen.push(9);
-    }
+    check(9);
   } else if (enemyNumber === 9) {
     //Volcano Boss
     enemy = new Enemy(200, "VolcanoBoss", 200);
     document.getElementById("opponentCharacter").src =
       "imgs/Lava_JavaKnight.png";
-    if (!monstersSeen.includes(10)) {
-      monstersSeen.push(10);
-    }
+    check(10);
+  }
+}
+
+function check(num) {
+  if (!monstersSeen.includes(Number(num))) {
+    monstersSeen.push(Number(num));
   }
 }
 
@@ -434,16 +424,17 @@ function gameEnding(result) {
   //saves an array
   let temp = JSON.parse(sessionStorage.getItem("enemies"));
   if (temp) {
-    alert(temp);
     temp.push(...monstersSeen);
+    //removed duplicates in saved array (enemies)
+    temp = [...new Set(temp)];
     sessionStorage.setItem("enemies", JSON.stringify(temp));
   } else sessionStorage.setItem("enemies", JSON.stringify(monstersSeen));
 }
 
 //Cache Clear Code
 window.addEventListener("keydown", (event) => {
-  if (event.key === "!") {
-    alert("Debug Mode Active");
+  if (event.key == "!") {
+    alert("Cache Cleared");
     sessionStorage.setItem("enemies", null);
   }
 });
