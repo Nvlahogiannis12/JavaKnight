@@ -5,6 +5,7 @@ window.onload = function () {
   isMenu();
   updatePlayerActionOption();
 };
+
 //Arrow Keys for selections if selections go over then they loop
 function playerKeyDownsMenuOne(event) {
   if (firstOptions === false) return;
@@ -57,7 +58,7 @@ function playerMenuOptionSelected() {
   } else if (index === 1) {
     rules("entering");
   } else if (index == 2) {
-    alert("monsterDex");
+    alert(monstersLocated);
   }
 }
 
@@ -155,6 +156,7 @@ function loadScreenVanish() {
     document.body.style.backgroundImage = "url('imgs/Volcanic-Wastelands.png')";
   }
   document.getElementById("loadingType").classList.add("d-none");
+  document.getElementById("loadingProgressBar").classList.add("d-none");
   document.getElementById("playArea").classList.remove("d-none");
 
   ///FANCY ANIMATION STUFF HERE
